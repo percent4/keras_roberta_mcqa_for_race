@@ -43,7 +43,7 @@ class DataGenerator:
                 sample = self.data[j]
                 Y[i % self.batch_size, sample.correct_answer] = 1
                 for choice_num, answer in enumerate(sample.answers):
-                    x1, x2 = tokenizer_encode(tokenizer, sample.article, sample.question+answer, MAX_SEQ_LENGTH)
+                    x1, x2 = tokenizer_encode(tokenizer, sample.article, sample.question+' '+answer, MAX_SEQ_LENGTH)
                     X1[i % self.batch_size, choice_num, :] = x1
                     X2[i % self.batch_size, choice_num, :] = x2
 
@@ -76,9 +76,9 @@ if __name__ == '__main__':
         warmup_proportion=WARMUP_RATION,
     )
     optimizer = AdamWarmup(total_steps, warmup_steps, lr=2e-5, min_lr=1e-8)
-    filepath = "models/mcqa_race_model-{epoch:02d}-{val_acc:.4f}.h5"
+    filepath = "models/mcqa_race_model-{epoch:02d}-{val_accuracy:.4f}.h5"
     checkpoint = ModelCheckpoint(filepath,
-                                 monitor='val_acc',
+                                 monitor='val_accuracy',
                                  verbose=1,
                                  save_best_only=True,
                                  save_weights_only=True,

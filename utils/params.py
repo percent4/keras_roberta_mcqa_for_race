@@ -24,6 +24,6 @@ ROBERTA_DICT = os.path.join(roberta_path, 'dict.txt')
 # 模型参数配置
 NUM_CHOICES = 4
 EPOCH = 20
-BATCH_SIZE = 3
+BATCH_SIZE = 4
 MAX_SEQ_LENGTH = 380
-WARMUP_RATION = 0.1
+WARMUP_RATION = 0.06

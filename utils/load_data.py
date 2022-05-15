@@ -18,8 +18,7 @@ for train_file_path in train_file_path_list:
 
 train_samples = []
 for sample in samples:
-    article = re.sub("(（.+?）)", "", sample["article"].replace("\u3000", "").replace(" ", "")
-               .replace("\n", "").replace("\r", ""))
+    article = re.sub("(（.+?）)", "", sample["article"].replace("\u3000", "").replace("\n", "").replace("\r", ""))
     for question, option, answer in zip(sample["questions"], sample["options"], sample["answers"]):
         if question:
             question = re.sub("(（.+?）)", "", question.replace("\u3000", "")
@@ -34,8 +33,7 @@ for dev_file_path in dev_file_path_list:
 
 dev_samples = []
 for sample in samples:
-    article = re.sub("(（.+?）)", "", sample["article"].replace("\u3000", "").replace(" ", "")
-                     .replace("\n", "").replace("\r", ""))
+    article = re.sub("(（.+?）)", "", sample["article"].replace("\u3000", "").replace("\n", "").replace("\r", ""))
     for question, option, answer in zip(sample["questions"], sample["options"], sample["answers"]):
         if question:
             question = re.sub("(（.+?）)", "", question.replace("\u3000", "")

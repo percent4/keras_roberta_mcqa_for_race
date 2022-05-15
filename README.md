@@ -25,6 +25,7 @@ python tf_roberta_demo.py
     --tf_roberta_path /path/to/converted/roberta
     --tf_ckpt_name your_mode_name
 ```
+
 ### train Multiply Choice Question Model
 
 1. get data: `RACE` dataset: [https://huggingface.co/datasets/race](https://huggingface.co/datasets/race), use `tar` command to extract, then run `get_json.py` in data directory.
