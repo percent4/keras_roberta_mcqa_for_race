@@ -11,7 +11,7 @@ from keras_bert import AdamWarmup, calc_train_steps
 from tensorflow.python import math_ops, array_ops
 
 from utils.load_data import train_samples, dev_samples
-from utils.robeberta_tokernizer import tokenizer_encode
+from utils.roberta_tokernizer import tokenizer_encode
 from model import SimpleMultiChoiceMRC
 from utils.params import *
 from keras_roberta.tokenizer import RobertaTokenizer
@@ -43,7 +43,8 @@ class DataGenerator:
                 sample = self.data[j]
                 Y[i % self.batch_size, sample.correct_answer] = 1
                 for choice_num, answer in enumerate(sample.answers):
-                    x1, x2 = tokenizer_encode(tokenizer, sample.article, sample.question+' '+answer, MAX_SEQ_LENGTH)
+                    x1, x2 = tokenizer_encode(tokenizer, sample.article.lower(),
+                                              sample.question.lower() + ' ' + answer.lower(), MAX_SEQ_LENGTH)
                     X1[i % self.batch_size, choice_num, :] = x1
                     X2[i % self.batch_size, choice_num, :] = x2
 
@@ -70,7 +71,7 @@ if __name__ == '__main__':
     model = SimpleMultiChoiceMRC(CONFIG_FILE_PATH, CHECKPOINT_FILE_PATH, MAX_SEQ_LENGTH, NUM_CHOICES).create_model()
     # add warmup
     total_steps, warmup_steps = calc_train_steps(
-        num_example=len(train_samples),
+        num_example=len(train_samples) * NUM_CHOICES,
         batch_size=BATCH_SIZE,
         epochs=EPOCH,
         warmup_proportion=WARMUP_RATION,

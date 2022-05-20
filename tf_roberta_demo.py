@@ -4,7 +4,6 @@ from keras_roberta.roberta import build_bert_model
 from keras_roberta.tokenizer import RobertaTokenizer
 from fairseq.models.roberta import RobertaModel as FairseqRobertaModel
 import numpy as np
-import argparse
 
 
 if __name__ == '__main__':
@@ -26,8 +25,8 @@ if __name__ == '__main__':
     model = build_bert_model(config_path, checkpoint_path, roberta=True)  # 建立模型，加载权重
 
     # 编码测试
-    text1 = "hello, world!"
-    text2 = "This is Roberta!"
+    text1 = "chinese"
+    text2 = "japan"
     sep = [tokenizer.sep_token]
     cls = [tokenizer.cls_token]
     # 1. 先用'bpe_tokenize'将文本转换成bpe tokens

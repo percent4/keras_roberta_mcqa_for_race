@@ -26,8 +26,8 @@ class SimpleMultiChoiceMRC(object):
             layer.trainable = True
 
         # get bert encoder vector
-        x1_in = Input(shape=(self.num_choices, self.max_len,), name="token_ids")
-        x2_in = Input(shape=(self.num_choices, self.max_len,), name="segment_ids")
+        x1_in = Input(shape=(self.num_choices, self.max_len, ), name="token_ids")
+        x2_in = Input(shape=(self.num_choices, self.max_len, ), name="segment_ids")
         reshape_x1_in = Lambda(lambda x: tf.reshape(x, [-1, self.max_len]), name="reshape1")(x1_in)
         reshape_x2_in = Lambda(lambda x: tf.reshape(x, [-1, self.max_len]), name="reshape2")(x2_in)
         bert_layer = roberta_model([reshape_x1_in, reshape_x2_in])

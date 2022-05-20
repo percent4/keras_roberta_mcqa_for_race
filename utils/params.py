@@ -9,11 +9,12 @@ train_file_path_list = [f"./data/RACE/{_}/train.json" for _ in dataset]
 dev_file_path_list = [f"./data/RACE/{_}/dev.json" for _ in dataset]
 test_file_path_list = [f"./data/RACE/{_}/test.json" for _ in dataset]
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)).split('utils')[0]
 # 模型配置
-roberta_path = 'roberta-base'
-tf_roberta_path = 'tf_roberta_base'
+roberta_path = os.path.join(PROJECT_DIR, 'roberta-base')
+tf_roberta_path = os.path.join(PROJECT_DIR, 'tf_roberta_base')
 tf_ckpt_name = 'tf_roberta_base.ckpt'
-vocab_path = 'keras_roberta'
+vocab_path = os.path.join(PROJECT_DIR, 'keras_roberta')
 
 CONFIG_FILE_PATH = os.path.join(tf_roberta_path, 'bert_config.json')
 CHECKPOINT_FILE_PATH = os.path.join(tf_roberta_path, tf_ckpt_name)

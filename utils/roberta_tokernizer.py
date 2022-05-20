@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time : 2022/5/14 11:41
 # @Author : Jclian91
-# @File : robeberta_tokernizer.py
+# @File : roberta_tokernizer.py
 # @Place : Minghang, Shanghai
 from utils.params import *
 from keras_roberta.tokenizer import RobertaTokenizer
@@ -26,8 +26,8 @@ def tokenizer_encode(tokenizer, text1, text2, max_seq_length):
 
     pad_length = max_seq_length - len(token_ids)
     if pad_length >= 0:
-        token_ids += [0] * pad_length
-        segment_ids += [0] * pad_length
+        token_ids += [tokenizer.pad_idx] * pad_length
+        segment_ids += [tokenizer.pad_idx] * pad_length
 
     return token_ids, segment_ids
 
